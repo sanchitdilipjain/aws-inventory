@@ -1,37 +1,68 @@
-## Welcome to GitHub Pages
+## AWS Systems Manager Inventory
 
-You can use the [editor on GitHub](https://github.com/sanchitdilipjain/aws-inventory/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+**Introduction**
+- AWS Systems Manager Inventory offers transparency to your Amazon EC2 and on-premises processing ecosystem. We can leverage Inventory to catpure metadata from your managed instances
+- Metadata generated from AWS Systems Manager Inventory can be persisted in a Amazon Simple Storage Service (Amazon S3) bucket and post you can query the data and identify version of software and different configuration deployed in your instance as per your ogranisation software policy, and which instances need to be updated
+- You can configure Inventory on all of your managed instances by a single click process. You can also view inventory data from multiple AWS Regions and accounts.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**Tutorial**
+- In this tutorial we will enable Inventory which uses State Manager to establish a link that runs the pre-defined document AWS-GatherSoftwareInventory on a schedule that you mention. 
+- We will also configure a Resource Data Sync which sends the Inventory data to an S3 bucket for downstream processing and analysis.
 
-### Markdown
+1. Navigate to Systems Manager  
+   
+   <img src="images/image1.png" class="inline"/>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+2. Select Inventory under Node Management section in the left pane
+    
+   <img src="images/image2.png" class="inline"/>
 
-```markdown
-Syntax highlighted code block
+3. Select Setup Inventory from the home page
+    
+   <img src="images/image3.png" class="inline"/>
 
-# Header 1
-## Header 2
-### Header 3
+4. Enter the following for Inventory Association Configuration Details:
 
-- Bulleted
-- List
+    - For Name keep the default: Inventory-Association
+    
+      <img src="images/image4.png" class="inline"/>
 
-1. Numbered
-2. List
+    - For Targets select Choose all instances - (You can scope the State Manager Association down to specific targets if this was a real world scenario)
+    
+      <img src="images/image5.png" class="inline"/>
 
-**Bold** and _Italic_ and `Code` text
+    - For Schedule keep the default of 30 minutes
 
-[Link](url) and ![Image](src)
-```
+      <img src="images/image6.png" class="inline"/>
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+    - For Parameters keep all defaults
+      
+      <img src="images/image7.png" class="inline"/>
 
-### Jekyll Themes
+    - For Advanced leave this unchecked, we will configure this separately
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sanchitdilipjain/aws-inventory/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+      <img src="images/image8.png" class="inline"/>
 
-### Support or Contact
+5. Select Setup Inventory
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+   <img src="images/image9.png" class="inline"/>
+  
+6. Select View Details (top right inside the green success banner)
+
+  - Alternatively, navigate to State Manager and drill into the details of the Association named Inventory-Association
+
+  <img src="images/image10.png" class="inline"/>
+  
+  <img src="images/image11.png" class="inline"/>
+
+7. The Inventory Association Details will be the first place to go for troubleshooting. Traverse to resources and you will find all targets registered with the Association and a direct link to their Run Command output
+
+8. Navigate to the Dashboard under Inventory console
+
+  <img src="images/image12.png" class="inline"/>
+
+   **NOTE:** It may take several minutes to begin populating data within the dashboard
+
+9. Now we will setup the Resource Data Sync which will persist the inventory data to an S3 bucket for further processing
+
+
