@@ -64,7 +64,6 @@
 
    **NOTE:** It may take several minutes to begin populating data within the dashboard
 
-
 9. Now we will set up the Resource Data Sync which will persist the inventory data to an S3 bucket for further processing
 
       - Navigate to <a href="https://console.aws.amazon.com/systems-manager/inventory"> Systems Manager > Node Management > Inventory </a>
@@ -73,38 +72,37 @@
 
       - And under Bucket Policy add below policy
    
-       ```markdown
-         {
-         "Version": "2012-10-17",
-         "Statement": [
-         {
-             "Sid": "SSMBucketPermissionsCheck",
-             "Effect": "Allow",
-             "Principal": {
-                   "Service": "ssm.amazonaws.com"
-             },
-         "Action": "s3:GetBucketAcl",
-         "Resource": "arn:aws:s3:::ENTERYOURBUCKET"
-         },
-         {
-         "Sid": " SSMBucketDelivery",
-         "Effect": "Allow",
-         "Principal": {
-                    "Service": "ssm.amazonaws.com"
-         },
-         "Action": "s3:PutObject",
-         "Resource": [
-                  "arn:aws:s3:::ENTERYOURBUCKET/inventory/*"
-         ],
-         "Condition": {
-             "StringEquals": {
-                 "s3:x-amz-acl": "bucket-owner-full-control"
-                }
-              }
+            {
+            "Version": "2012-10-17",
+            "Statement": [
+            {
+                "Sid": "SSMBucketPermissionsCheck",
+                "Effect": "Allow",
+                "Principal": {
+                      "Service": "ssm.amazonaws.com"
+                },
+            "Action": "s3:GetBucketAcl",
+            "Resource": "arn:aws:s3:::ENTERYOURBUCKET"
+            },
+            {
+            "Sid": " SSMBucketDelivery",
+            "Effect": "Allow",
+            "Principal": {
+                       "Service": "ssm.amazonaws.com"
+            },
+            "Action": "s3:PutObject",
+            "Resource": [
+                     "arn:aws:s3:::ENTERYOURBUCKET/inventory/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "bucket-owner-full-control"
+                   }
+                 }
+               }
+             ]
             }
-          ]
-         }
-       ```
+       
     **NOTE:** Enter in your Bucket Name into the policy above and select Save
 
     <img src="images/image13.png" class="inline"/>
