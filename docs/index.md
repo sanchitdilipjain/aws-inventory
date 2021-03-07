@@ -54,7 +54,6 @@
   <img src="images/image10.png" class="inline"/>
   
   <img src="images/image11.png" class="inline"/>
-
 7. The Inventory Association Details will be the first place to go for troubleshooting. Traverse to resources and you will find all targets registered with the Association and a direct link to their Run Command output
 
 8. Navigate to the Dashboard under the Inventory console
