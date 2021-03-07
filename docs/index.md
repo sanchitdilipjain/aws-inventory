@@ -64,6 +64,7 @@
 
 **NOTE:** It may take several minutes to begin populating data within the dashboard
 
+
 9. Now we will set up the Resource Data Sync which will persist the inventory data to an S3 bucket for further processing
 
    - Navigate to <a href="https://console.aws.amazon.com/systems-manager/inventory"> Systems Manager > Node Management > Inventory </a>
