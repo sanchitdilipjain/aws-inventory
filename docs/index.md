@@ -85,7 +85,6 @@
          "Resource": "arn:aws:s3:::ENTERYOURBUCKET"
          },
          {
-
          "Sid": " SSMBucketDelivery",
          "Effect": "Allow",
          "Principal": {
