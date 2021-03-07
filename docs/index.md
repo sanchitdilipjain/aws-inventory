@@ -60,9 +60,9 @@
 
 8. Navigate to the Dashboard under the Inventory console
 
-  <img src="images/image12.png" class="inline"/>
-
-**NOTE:** It may take several minutes to begin populating data within the dashboard
+   <img src="images/image12.png" class="inline"/>
+  
+   **NOTE:** It may take several minutes to begin populating data within the dashboard
 
 9. Now we will set up the Resource Data Sync which will persist the inventory data to an S3 bucket for further processing
 
