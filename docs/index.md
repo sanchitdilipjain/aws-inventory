@@ -49,11 +49,11 @@
   
 6. Select View Details (top right inside the green success banner)
 
-  - Alternatively, navigate to State Manager and drill into the details of the Association named Inventory-Association
+     - Alternatively, navigate to State Manager and drill into the details of the Association named Inventory-Association
 
-  <img src="images/image10.png" class="inline"/>
-  
-  <img src="images/image11.png" class="inline"/>
+     <img src="images/image10.png" class="inline"/>
+
+     <img src="images/image11.png" class="inline"/>
 
 
 7. The Inventory Association Details will be the first place to go for troubleshooting. Traverse to resources and you will find all targets registered with the Association and a direct link to their Run Command output
@@ -67,11 +67,11 @@
 
 9. Now we will set up the Resource Data Sync which will persist the inventory data to an S3 bucket for further processing
 
-   - Navigate to <a href="https://console.aws.amazon.com/systems-manager/inventory"> Systems Manager > Node Management > Inventory </a>
-   
-   - Create S3 bucket for persisting resource data
-   
-   - And under Bucket Policy add below policy
+      - Navigate to <a href="https://console.aws.amazon.com/systems-manager/inventory"> Systems Manager > Node Management > Inventory </a>
+
+      - Create S3 bucket for persisting resource data
+
+      - And under Bucket Policy add below policy
    
        ```markdown
          {
