@@ -54,13 +54,14 @@
   <img src="images/image10.png" class="inline"/>
   
   <img src="images/image11.png" class="inline"/>
+
 7. The Inventory Association Details will be the first place to go for troubleshooting. Traverse to resources and you will find all targets registered with the Association and a direct link to their Run Command output
 
 8. Navigate to the Dashboard under the Inventory console
 
   <img src="images/image12.png" class="inline"/>
 
-   **NOTE:** It may take several minutes to begin populating data within the dashboard
+**NOTE:** It may take several minutes to begin populating data within the dashboard
 
 9. Now we will set up the Resource Data Sync which will persist the inventory data to an S3 bucket for further processing
 
