@@ -65,4 +65,75 @@
 
 9. Now we will set up the Resource Data Sync which will persist the inventory data to an S3 bucket for further processing
 
+   - Navigate to <a href="https://console.aws.amazon.com/systems-manager/inventory"> Systems Manager > Node Management > Inventory </a>
+   
+   - Create S3 bucket for persisting resource data
+   
+   - And under Bucket Policy add below policy
+   
+       ```markdown
+         {
+         "Version": "2012-10-17",
+         "Statement": [
+         {
+             "Sid": "SSMBucketPermissionsCheck",
+             "Effect": "Allow",
+             "Principal": {
+                   "Service": "ssm.amazonaws.com"
+             },
+         "Action": "s3:GetBucketAcl",
+         "Resource": "arn:aws:s3:::ENTERYOURBUCKET"
+         },
+         {
 
+         "Sid": " SSMBucketDelivery",
+         "Effect": "Allow",
+         "Principal": {
+                    "Service": "ssm.amazonaws.com"
+         },
+         "Action": "s3:PutObject",
+         "Resource": [
+                  "arn:aws:s3:::ENTERYOURBUCKET/inventory/*"
+         ],
+         "Condition": {
+             "StringEquals": {
+                 "s3:x-amz-acl": "bucket-owner-full-control"
+                }
+              }
+            }
+          ]
+         }
+       ```
+    **NOTE:** Enter in your Bucket Name into the policy above and select Save
+
+    <img src="images/image13.png" class="inline"/>
+
+10. Navigate back to <a href="https://console.aws.amazon.com/systems-manager/managed-instances/resource-data-sync"> Inventory > Resource Data Sync </a>
+
+11. Select Create resource data sync
+
+    <img src="images/image14.png" class="inline"/>
+    
+12. Configuration details
+
+      - For Sync name enter YOURNAME-inventory-s3-sync
+
+      - For Bucket name enter the name of the bucket you created previously
+
+      - For Bucket prefix enter inventory
+
+      - For Bucket region enter This region (us-east-1)
+
+      - For KMS key leave this blank for the purpose of the demo - Encryption details
+
+      - Choose Create
+     
+    <img src="images/image15.png" class="inline"/>  
+    
+    <img src="images/image16.png" class="inline"/>  
+
+13. Switch to your S3 bucket and you can now see the data being synced
+
+    <img src="images/image17.png" class="inline"/>  
+
+14. Now we have a cleansed inventory persisted in the S3 bucket and with help of Athena & Quicksight, you can gain insight into the inventory data captured
